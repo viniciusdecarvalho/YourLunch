@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace YourLunch.Domain
 {
-    public class PromotionLotOfCheeseRule : PromotionRule
+    public class PromotionRuleLotOfBeaf : PromotionRule
     {
         public override bool CanApply(Order order)
         {
@@ -11,7 +11,7 @@ namespace YourLunch.Domain
 
             return
                 ingredients
-                .Where(i => i.Name.Contains("Cheese", StringComparison.InvariantCultureIgnoreCase))
+                .Where(i => i.Name.Contains("Beef", StringComparison.InvariantCultureIgnoreCase))
                 .Count() > 2;
         }
 
@@ -21,7 +21,7 @@ namespace YourLunch.Domain
 
             var query =
                 from i in ingredients
-                where i.Name.Contains("Cheese", StringComparison.InvariantCultureIgnoreCase)
+                where i.Name.Contains("Beef", StringComparison.InvariantCultureIgnoreCase)
                 group i by new { i.Name, i.Price } into beef
                 select new
                 {
@@ -34,7 +34,7 @@ namespace YourLunch.Domain
 
             if (first.Count >= 3)
             {
-                return (first.Count / 3) * first.Price;
+                return (first.Count / 3) * first.Price; 
             }
 
             return decimal.Zero;

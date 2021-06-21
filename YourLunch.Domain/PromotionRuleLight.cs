@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace YourLunch.Domain
 {
-    public class PromotionLightRule : PromotionRule
+    public class PromotionRuleLight : PromotionRule
     {
         public override bool CanApply(Order order)
         {
