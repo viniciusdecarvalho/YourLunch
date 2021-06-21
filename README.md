@@ -38,5 +38,3 @@ A lot of Cheese | For every 3 portions of cheese, the customer only pays 2. If t
 
 ##### Inflation
 Ingredient values ​​change frequently and we would not want this to influence automated testing.
-
-The order form must have a timer counting how long the user is in the order screen. This time must be incremental every 1 second.
