@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{3170F54B-C028-489B-8CA6-08D56ECE4A23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{014A6158-31AE-4035-ACA8-C3B0B93ED5E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourLunch.Domain.Tests", "YourLunch.Domain.Tests\YourLunch.Domain.Tests.csproj", "{D6CE2ABE-D020-423B-9609-6A6ACF66C090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourLunch.Domain", "YourLunch.Domain\YourLunch.Domain.csproj", "{7510DE83-1B97-4E78-AADA-7B334BCD4674}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6CE2ABE-D020-423B-9609-6A6ACF66C090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CE2ABE-D020-423B-9609-6A6ACF66C090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CE2ABE-D020-423B-9609-6A6ACF66C090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CE2ABE-D020-423B-9609-6A6ACF66C090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7510DE83-1B97-4E78-AADA-7B334BCD4674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7510DE83-1B97-4E78-AADA-7B334BCD4674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7510DE83-1B97-4E78-AADA-7B334BCD4674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7510DE83-1B97-4E78-AADA-7B334BCD4674}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A56E4C51-4909-4B05-8E19-940F093D3BED}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D6CE2ABE-D020-423B-9609-6A6ACF66C090} = {014A6158-31AE-4035-ACA8-C3B0B93ED5E1}
+		{7510DE83-1B97-4E78-AADA-7B334BCD4674} = {3170F54B-C028-489B-8CA6-08D56ECE4A23}
+	EndGlobalSection
+EndGlobal
