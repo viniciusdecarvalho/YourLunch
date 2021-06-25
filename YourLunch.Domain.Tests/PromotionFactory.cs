@@ -6,7 +6,7 @@ namespace YourLunch.Domain.Tests
     {
         internal PromotionRule CreateLightRule()
         {
-            return new PromotionLightRule();
+            return new PromotionRuleLight();
         }
 
         internal Promotion CreateLight()
@@ -25,9 +25,9 @@ namespace YourLunch.Domain.Tests
         {
             var rules = new PromotionRuleCollection
             {
-                new PromotionLightRule(),
-                new PromotionLotOfBeafRule(),
-                new PromotionLotOfCheeseRule()
+                new PromotionRuleLight(),
+                new PromotionRuleLotOfBeaf(),
+                new PromotionRuleLotOfCheese()
             };
             return rules;
         }

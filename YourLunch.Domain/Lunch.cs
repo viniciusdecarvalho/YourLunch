@@ -5,50 +5,47 @@ using System.Linq;
 
 namespace YourLunch.Domain
 {
-    public class Lunch: IEnumerable<Ingredient>
+    public class Lunch: IGrouperCollection<Ingredient>
     {
-        private readonly List<Ingredient> initialIngredients = new List<Ingredient>();
-        private readonly List<Ingredient> othersIngredients = new List<Ingredient>();
+        private readonly GrouperCollection<Ingredient> ingredients = new GrouperCollection<Ingredient>();
 
         internal static readonly Lunch Empty = new Lunch();
 
         public Lunch(params Ingredient[] initialIngredients)
         {
-            if (initialIngredients is null)
-            {
-                throw new ArgumentNullException(nameof(initialIngredients));
-            }
-
-            this.initialIngredients.AddRange(initialIngredients);
+            this.ingredients.AddRange(initialIngredients);
         }
 
-        public void Add(params Ingredient[] ingredients)
-        {
-            if (ingredients is null)
-            {
-                throw new ArgumentNullException(nameof(ingredients));
-            }
+        public decimal TotalPrice =>
+            this.ingredients
+                .DefaultIfEmpty(new Grouper<Ingredient>(Ingredient.Zero))
+                .Sum(i => i.Amount * i.Value.Price);
 
-            this.othersIngredients.AddRange(ingredients);
+        public int Count => throw new NotImplementedException();
+
+        public void Add(Ingredient item)
+        {
+            this.ingredients.Add(item);
         }
 
-        private IEnumerable<Ingredient> All =>
-            Enumerable.Concat(this.initialIngredients, this.othersIngredients);
-
-        public IEnumerator<Ingredient> GetEnumerator()
+        public bool Contains(Ingredient item)
         {
-            return this.All.GetEnumerator();
+            return this.ingredients.Contains(item);
+        }
+
+        public void Remove(Ingredient item)
+        {
+            this.ingredients.Remove(item);
+        }
+
+        public IEnumerator<Grouper<Ingredient>> GetEnumerator()
+        {
+            return this.ingredients.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.All.GetEnumerator();
+            return this.ingredients.GetEnumerator();
         }
-
-        public bool Contains(Ingredient ingredient) =>
-            this.All.Contains(ingredient);
-
-        public decimal TotalPrice =>
-            this.DefaultIfEmpty(Ingredient.Zero).Sum(i => i.Price);
     }
 }

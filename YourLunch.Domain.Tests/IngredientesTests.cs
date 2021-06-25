@@ -8,10 +8,11 @@ namespace YourLunch.Domain.Tests
         [Fact]
         public void ShouldBeCreateIngredient()
         {
-            var ingredient = new Ingredient(name: "Bacon", price: 0.8M);
+            var ingredient =
+                new IngredientFactory().CreateBacon();                
 
             Assert.Equal("Bacon", ingredient.Name);
-            Assert.Equal(0.8M, ingredient.Price, 10);
+            Assert.Equal(2.0M, ingredient.Price, 10);
         }
 
         //[Fact]

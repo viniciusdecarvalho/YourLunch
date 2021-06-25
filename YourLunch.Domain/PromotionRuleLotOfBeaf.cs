@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace YourLunch.Domain
@@ -7,37 +8,31 @@ namespace YourLunch.Domain
     {
         public override bool CanApply(Order order)
         {
-            var ingredients = order.Ingredients;
-
             return
-                ingredients
-                .Where(i => i.Name.Contains("Beef", StringComparison.InvariantCultureIgnoreCase))
-                .Count() > 2;
+                QuantityOfBeef(order) > 2;
+        }
+
+        private int QuantityOfBeef(Order order)
+        {
+            var query =
+                from i in order.Ingredients
+                where i.Value.Name.Contains("Beef", StringComparison.InvariantCultureIgnoreCase)
+                select i;
+
+            return query.FirstOrDefault()?.Amount ?? 0;
         }
 
         public override decimal Rule(Order order)
         {
-            var ingredients = order.Ingredients;
-
             var query =
-                from i in ingredients
-                where i.Name.Contains("Beef", StringComparison.InvariantCultureIgnoreCase)
-                group i by new { i.Name, i.Price } into beef
-                select new
-                {
-                    beef.Key.Name,
-                    beef.Key.Price,
-                    Count = beef.Count()
-                };
+                from i in order.Ingredients
+                where i.Value.Name.Contains("Beef", StringComparison.InvariantCultureIgnoreCase)
+                where i.Amount >= 3
+                select i;
 
             var first = query.FirstOrDefault();
 
-            if (first.Count >= 3)
-            {
-                return (first.Count / 3) * first.Price; 
-            }
-
-            return decimal.Zero;
+            return ((first?.Amount / 3) * first?.Value.Price) ?? decimal.Zero;
         }
     }
 }

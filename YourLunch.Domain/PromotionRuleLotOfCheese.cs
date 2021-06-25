@@ -7,37 +7,24 @@ namespace YourLunch.Domain
     {
         public override bool CanApply(Order order)
         {
-            var ingredients = order.Ingredients;
-
             return
-                ingredients
-                .Where(i => i.Name.Contains("Cheese", StringComparison.InvariantCultureIgnoreCase))
-                .Count() > 2;
+                order.Ingredients
+                .Where(i => i.Value.Name.Contains("Cheese", StringComparison.InvariantCultureIgnoreCase))
+                .FirstOrDefault()?.Amount >= 3;
         }
 
         public override decimal Rule(Order order)
         {
-            var ingredients = order.Ingredients;
 
             var query =
-                from i in ingredients
-                where i.Name.Contains("Cheese", StringComparison.InvariantCultureIgnoreCase)
-                group i by new { i.Name, i.Price } into beef
-                select new
-                {
-                    beef.Key.Name,
-                    beef.Key.Price,
-                    Count = beef.Count()
-                };
+                from i in order.Ingredients
+                where i.Value.Name.Contains("Cheese", StringComparison.InvariantCultureIgnoreCase)
+                where i.Amount >= 3
+                select i;
 
             var first = query.FirstOrDefault();
 
-            if (first.Count >= 3)
-            {
-                return (first.Count / 3) * first.Price;
-            }
-
-            return decimal.Zero;
+            return ((first?.Amount / 3) * first?.Value.Price) ?? decimal.Zero;
         }
     }
 }

@@ -17,7 +17,8 @@ namespace YourLunch.Domain.Tests
         [InlineData("Bacon", 1.9, 1.9)]
         public void ShouldHavePriceEqualSumOfIngredients(string name, decimal price, decimal total)
         {
-            var bacon = new Ingredient(name: name, price);
+            var bacon = new IngredientFactory()
+                .CreateNew(name: name, price);
 
             var lunch = new Lunch(bacon);
 

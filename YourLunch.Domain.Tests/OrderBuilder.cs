@@ -10,7 +10,7 @@ namespace YourLunch.Domain.Tests
         private IngredientFactory ingredientFactory;
         private LunchFactory lunchFactory;
 
-        private PromotionRuleCollection promotions = new PromotionRuleCollection();
+        private PromotionRuleCollection rules = new PromotionRuleCollection();
         private List<Lunch> lunchs = new List<Lunch>();
 
         public OrderBuilder()
@@ -27,7 +27,7 @@ namespace YourLunch.Domain.Tests
         /// <returns>OrderBuilder</returns>
         internal OrderBuilder WithAllPromotions()
         {
-            this.promotions = this.promotionFactory.CreateAllRules();
+            this.rules = this.promotionFactory.CreateAllRules();
 
             return this;
         }
@@ -124,7 +124,7 @@ namespace YourLunch.Domain.Tests
         {
             var order = new Order();
             order.Add(this.lunchs.ToArray());
-            order.Add(new Promotion(this.promotions));
+            order.Add(new Promotion(this.rules));
             return order;
         }        
     }
